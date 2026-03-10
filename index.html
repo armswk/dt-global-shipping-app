@@ -2,53 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- ปรับ Viewport ให้เต็มจอ, ป้องกันการซูมด้วยนิ้ว, และรองรับรอยบาก (Notch) บนหน้าจอ iPhone -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>DT GLOBAL FREIGHT (THAILAND) CO., LTD. - Booking System</title>
     
-    <!-- แท็กสำหรับแสดง Favicon และไอคอนแอปบนหน้าจอ Home Screen (iOS) -->
     <link rel="icon" href="https://lh3.googleusercontent.com/d/1TxFRhjwa2woXHIZnD_pCnjZ_TtAt5B0f">
     <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/1TxFRhjwa2woXHIZnD_pCnjZ_TtAt5B0f">
     
-    <!-- การตั้งค่า PWA สำหรับ iOS / Safari -->
-    <!-- สั่งให้รันแบบแอปเต็มจอ (ซ่อนแถบ URL) -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <!-- ตั้งค่าสีแถบ Status Bar ด้านบน -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <!-- ชื่อสั้นๆ ที่จะแสดงใต้ไอคอนแอปบนหน้าจอ Home Screen -->
     <meta name="apple-mobile-web-app-title" content="DT Global">
-    <!-- รองรับ PWA สำหรับฝั่ง Android ด้วย -->
     <meta name="mobile-web-app-capable" content="yes">
     
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* ป้องกันเอฟเฟกต์เด้ง (Bounce) เวลากวาดนิ้วสุดขอบจอในมือถือ */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
             overflow: hidden;
-            /* ป้องกันการคลุมดำเลือกข้อความในส่วนของหน้า Wrapper */
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             user-select: none;
+            /* ตั้งค่าพื้นหลังด้านหลังสุดเป็นสีน้ำเงิน เพื่อให้แถบ Status Bar ด้านบนกลืนไปกับ Header ของแอป */
+            background-color: #1e3a8a; 
         }
         
-        /* อนุญาตให้คลุมดำข้อความและใช้งานปกติได้เฉพาะส่วนที่อยู่ใน iframe (แอปหลัก) */
+        .safe-area-container {
+            width: 100%;
+            height: 100%;
+            /* ดันเนื้อหาลงมาตามระยะรอยบาก หรือ Status Bar อัตโนมัติ */
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+            box-sizing: border-box;
+            /* สีพื้นหลังของแอปหลัก (กันเห็นขอบสีน้ำเงินด้านล่าง/ข้าง) */
+            background-color: #f3f4f6; 
+        }
+
         iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
             -webkit-user-select: auto;
             user-select: auto;
         }
     </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
-    <div class="fixed inset-0 w-full h-full">
-        <!-- iframe ดึงแอปจาก Google Apps Script มาแสดง -->
+    <div class="safe-area-container">
         <iframe 
             src="https://script.google.com/macros/s/AKfycbxE9XizHzQ4fe6BOM9b-K5mt-yS10eXsqiqbrLQmPuoZcI9xn2XdDbGswiNmPunDJUf/exec"
-            class="w-full h-full border-none"
             allow="geolocation; microphone; camera"
             title="App Content">
         </iframe>
